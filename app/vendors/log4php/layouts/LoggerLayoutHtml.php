@@ -20,10 +20,10 @@
  * Configurable parameters for this layout are:
  * - title
  * - locationInfo
- * An example for this layout:
- * {@example ../../examples/php/layout_html.php 19}<br>
+ * An example.tpl for this layout:
+ * {@example.tpl ../../examples/php/layout_html.php 19}<br>
  * The corresponding XML file:
- * {@example ../../examples/resources/layout_html.properties 18}
+ * {@example.tpl ../../examples/resources/layout_html.properties 18}
  * The above will print a HTML table that looks, converted back to plain text, like the following:<br>
  * <pre>
  *    Log session start time Wed Sep 9 00:11:30 2009

@@ -183,7 +183,7 @@ class Tpl
 	/**
 	 * Clean the expired files from cache
 	 *
-	 * @param type $expireTime Set the expiration time
+	 * @param int $expireTime Set the expiration time
 	 */
 	public static function clean($expireTime = 2592000)
 	{

@@ -26,11 +26,11 @@
  * {@link LoggerFilter::DENY} is returned. If there is no match,
  * {@link LoggerFilter::NEUTRAL} is returned.</p>
  * <p>
- * An example for this filter:
- * {@example ../../examples/php/filter_levelmatch.php 19}
+ * An example.tpl for this filter:
+ * {@example.tpl ../../examples/php/filter_levelmatch.php 19}
  * <p>
  * The corresponding XML file:
- * {@example ../../examples/resources/filter_levelmatch.xml 18}
+ * {@example.tpl ../../examples/resources/filter_levelmatch.xml 18}
  * @version    $Revision: 1213283 $
  * @package    log4php
  * @subpackage filters

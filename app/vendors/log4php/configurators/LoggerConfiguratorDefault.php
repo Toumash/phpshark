@@ -481,7 +481,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
 	/**
 	 * Helper method which applies given options to an object which has setters
 	 * for these options (such as appenders, layouts, etc.).
-	 * For example, if options are:
+	 * For example.tpl, if options are:
 	 * <code>
 	 * array(
 	 *    'file' => '/tmp/myfile.log',

@@ -27,8 +27,8 @@
  * The output is designed to be included as an external entity in a separate file to form
  * a correct XML file.</p>
  * Example:
- * {@example ../../examples/php/layout_xml.php 19}<br>
- * {@example ../../examples/resources/layout_xml.properties 18}<br>
+ * {@example.tpl ../../examples/php/layout_xml.php 19}<br>
+ * {@example.tpl ../../examples/resources/layout_xml.properties 18}<br>
  * The above would print:
  * <pre>
  * <log4php:eventSet xmlns:log4php="http://logging.apache.org/log4php/" version="0.3" includesLocationInfo="true">

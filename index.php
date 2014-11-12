@@ -16,6 +16,7 @@ use Codesharks\TText;
 
 TText::init(); //dictionary
 
+session_start();
 require_once R . DS . 'vendors' . DS . 'AltoRouter' . DS . 'AltoRouter.php';
 $router = new AltoRouter();
 $router->setBasePath('/mvc');
@@ -40,5 +41,3 @@ if ($match == false) {
 		require WR . DS . 'error_page' . DS . '500.php';
 	}
 }
-?>
-<h1><?php echo TText::_('APP_NAME'); ?></h1>

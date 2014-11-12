@@ -1,6 +1,6 @@
 [
-    ["GET|POST", "/", "TestController#doTest", "home"],
-    ["GET", "/xd/?[i:idx]?", "TestController#doTest", "troll"],
+    ["GET|POST", "/", "ExampleController#doTest", "home"],
+    ["GET", "/xd/?[i:idx]?", "ExampleController#doTest", "troll"],
     ["GET", "/users/[i:id]", "usxders#show", "users_show"],
     ["POST", "/users/[i:id]/[delete|update:action]", "usersController#doAction", "users_do"]
 ]

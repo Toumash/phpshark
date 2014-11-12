@@ -34,7 +34,7 @@
  * {@link clear()}, {@link getDepth()} and {@link setMaxDepth()}
  * affect the NDC of the <i>current</i> thread only. NDCs of other
  * threads remain unaffected.
- * For example, a servlet can build a per client request NDC
+ * For example.tpl, a servlet can build a per client request NDC
  * consisting the clients host name and other information contained in
  * the the request. <i>Cookies</i> are another source of distinctive
  * information. To build an NDC one uses the {@link push()}
@@ -58,9 +58,9 @@
  * the same category) can still be distinguished because each client
  * request will have a different NDC tag.
  * Example:
- * {@example ../../examples/php/ndc.php 19}<br>
+ * {@example.tpl ../../examples/php/ndc.php 19}<br>
  * With the properties file:
- * {@example ../../examples/resources/ndc.properties 18}<br>
+ * {@example.tpl ../../examples/resources/ndc.properties 18}<br>
  * Will result in the following (notice the conn and client ids):
  * <pre>
  * 2009-09-13 19:04:27 DEBUG root conn=1234: just received a new connection in src/examples/php/ndc.php at 23

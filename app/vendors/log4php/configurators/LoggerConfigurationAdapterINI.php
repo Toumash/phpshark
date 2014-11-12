@@ -189,7 +189,7 @@ class LoggerConfigurationAdapterINI implements LoggerConfigurationAdapter
 	 * <pre>
 	 * log4php.appender.<name>.layout.<param> = <value>
 	 * </pre>
-	 * For example, a full appender config might look like:
+	 * For example.tpl, a full appender config might look like:
 	 * <pre>
 	 * log4php.appender.myAppender = LoggerAppenderConsole
 	 * log4php.appender.myAppender.threshold = info

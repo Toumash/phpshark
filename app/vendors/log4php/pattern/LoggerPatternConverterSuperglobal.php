@@ -34,7 +34,7 @@ abstract class LoggerPatternConverterSuperglobal extends LoggerPatternConverter
 
 	/**
 	 * Name of the superglobal variable, to be defined by subclasses.
-	 * For example: "_SERVER" or "_ENV".
+	 * For example.tpl: "_SERVER" or "_ENV".
 	 */
 	protected $name;
 

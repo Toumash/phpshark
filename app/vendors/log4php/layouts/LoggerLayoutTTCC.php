@@ -28,9 +28,9 @@
  * - {@link $contextPrinting} (true|false) enable/disable NDC reporting.
  * - {@link $microSecondsPrinting} (true|false) enable/disable micro seconds reporting in timestamp.
  * - {@link $dateFormat} (string) set date format. See php {@link PHP_MANUAL#date} function for details.
- * An example how to use this layout:
- * {@example ../../examples/php/layout_ttcc.php 19}<br>
- * {@example ../../examples/resources/layout_ttcc.properties 18}<br>
+ * An example.tpl how to use this layout:
+ * {@example.tpl ../../examples/php/layout_ttcc.php 19}<br>
+ * {@example.tpl ../../examples/resources/layout_ttcc.properties 18}<br>
  * The above would print:<br>
  * <samp>02:28 [13714] INFO root - Hello World!</samp>
  * @version    $Revision: 1302503 $

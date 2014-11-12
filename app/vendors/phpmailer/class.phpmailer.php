@@ -224,7 +224,7 @@ class PHPMailer
 	 * All hosts must be separated by a
 	 * semicolon.  You can also specify a different port
 	 * for each host by using this format: [hostname:port]
-	 * (e.g. "smtp1.example.com:25;smtp2.example.com").
+	 * (e.g. "smtp1.example.tpl.com:25;smtp2.example.tpl.com").
 	 * Hosts will be tried in order.
 	 * @var string
 	 */
@@ -336,7 +336,7 @@ class PHPMailer
 	/**
 	 * Used with DKIM Signing
 	 * required parameter if DKIM is enabled
-	 * domain selector example domainkey
+	 * domain selector example.tpl domainkey
 	 * @var string
 	 */
 	public $DKIM_selector = '';

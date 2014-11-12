@@ -22,11 +22,11 @@
  * filtering behaviour to a "deny all unless instructed otherwise"
  * behaviour.
  * <p>
- * An example for this filter:
- * {@example ../../examples/php/filter_denyall.php 19}
+ * An example.tpl for this filter:
+ * {@example.tpl ../../examples/php/filter_denyall.php 19}
  * <p>
  * The corresponding XML file:
- * {@example ../../examples/resources/filter_denyall.xml 18}
+ * {@example.tpl ../../examples/resources/filter_denyall.xml 18}
  * @version    $Revision: 883108 $
  * @package    log4php
  * @subpackage filters
