@@ -1,69 +1,44 @@
 <?php
-define('WR', dirname(__FILE__));
-define('R', WR . '/app');
-define('DS', DIRECTORY_SEPARATOR);
+define('WR', dirname(__FILE__)); // Web Root
+define('R', WR . '/app'); // Application Root
+define('DS', DIRECTORY_SEPARATOR); //Different like operating systems
 
-
+/*    DEBUG VARIABLES
+**************************/
 ini_set('display_startup_errors', 1);
 ini_set('display_errors', 1);
 error_reporting(E_ALL | E_STRICT);
-//&&&&&&&&&&&&&&&&&&&
-//&&  AUTOLOADING  &&
-//&&&&&&&&&&&&&&&&&&&
 
+/*      AUTOLOADING
+ *************************/
 require R . DS . 'autoload.php';
-
-use codesharks\TText;
+use Codesharks\TText;
 
 TText::init(); //dictionary
 
-require_once R . '/vendors/AltoRouter/AltoRouter.php';
-
-
+require_once R . DS . 'vendors' . DS . 'AltoRouter' . DS . 'AltoRouter.php';
 $router = new AltoRouter();
 $router->setBasePath('/mvc');
 
-//*********************************
-//        ALL ROUTING STUFF
-//**********************************
-$routes = require R . DS . 'routes.php';
-$router->addRoutes($routes);
-
+/*        ROUTING
+ **************************/
+$routes2 = json_decode(file_get_contents(R . DS . 'routes.json'));
+$router->addRoutes($routes2);
 $match = $router->match();
 
-
-// call closure or throw 404 status
-if ($match && is_callable($match['target'])) {
-	call_user_func_array($match['target'], $match['params']);
-} else {
-	// no route was matched
+if ($match == false) {
 	header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+	require WR . DS . 'error_page' . DS . '404.php';
+} else {
+	list($controller, $action) = explode('#', $match['target']);
+	$obj = new $controller();
 
-	require WR . DS . 'error_page' . DS . '500.php';
+	if (is_callable(array($obj, $action))) {
+		call_user_func_array(array($obj, $action), array($match['params']));
+	} else {
+		header($_SERVER["SERVER_PROTOCOL"] . ' 500 Internal server Error');
+		require WR . DS . 'error_page' . DS . '500.php';
+	}
 }
 ?>
-	<h1><?php echo TText::_('APP_NAME'); ?></h1>
-
-	<h3>Current request: </h3>
-	<pre>
-	Target: <?php var_dump($match['target']); ?>
-		Params: <?php var_dump($match['params']); ?>
-		Name:    <?php var_dump($match['name']); ?>
-</pre>
-
-	<h3>Try these requests: </h3>
-	<p><a href="<?php echo $router->generate('home'); ?>">GET <?php echo $router->generate('home'); ?></a></p>
-	<p>
-		<a href="<?php echo $router->generate('users_show', array('id' => 5)); ?>">GET <?php echo $router->generate('users_show', array('id' => 5)); ?></a>
-	</p>
-	<p>
-	<form action="<?php echo $router->generate('users_do', array('id' => 10, 'action' => 'update')); ?>" method="post">
-		<button
-			type="submit"><?php echo $router->generate('users_do', array('id' => 10, 'action' => 'update')); ?></button>
-	</form></p>
-<?php
-
-
-
-
-?>
+<h1><?php echo TText::_('APP_NAME'); ?></h1>

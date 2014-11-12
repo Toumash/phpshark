@@ -1,11 +1,12 @@
 RewriteEngine On
+RewriteBase /mvc
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteRule . index.php [L]
 
 ErrorDocument 500 /error_page/500.php
+ErrorDocument 403 /error_page/403.php
 DirectoryIndex index.php
 Options -Indexes
-
 
 <ifModule mod_gzip.c>
 mod_gzip_on Yes
