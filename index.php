@@ -1,7 +1,7 @@
 <?php
 define('WR', dirname(__FILE__)); // Web Root
 define('R', WR . '/app'); // Application Root
-define('DS', DIRECTORY_SEPARATOR); //Different like operating systems
+define('DS', DIRECTORY_SEPARATOR);
 
 /*    DEBUG VARIABLES
 **************************/

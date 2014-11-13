@@ -1,5 +1,7 @@
 <?php
 
+use Codesharks\View;
+
 class ExampleView extends View
 {
 	public function __construct()

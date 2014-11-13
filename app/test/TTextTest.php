@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Tomasz
- * Date: 11.11.14
- * Time: 21:36
- */
-
 namespace test;
 
 use Codesharks\TText;
@@ -46,6 +39,16 @@ class TTextTest extends \PHPUnit_Framework_TestCase
 	{
 		$actual = TText::_('random_stuff');
 		$this->assertEquals(false, $actual);
+	}
+
+	public function testUnloadingLanguages()
+	{
+		TText::setLanguage('pl');
+		$usage = memory_get_usage();
+		TText::unloadTranslation();
+		$usage2 = memory_get_usage();
+
+		$this->assertGreaterThan($usage2, $usage, 'unloading .ini file not complete (RAM not freed)');
 	}
 }
  
