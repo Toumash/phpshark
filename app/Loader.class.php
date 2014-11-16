@@ -2,14 +2,11 @@
 
 class Loader
 {
-	public $module_files;
 	public static $loader;
-	public $modules;
 
 	private function __construct()
 	{
 		spl_autoload_register(array($this, 'base'));
-		spl_autoload_register(array($this, 'module'));
 	}
 
 	public static function getInstance()
@@ -20,15 +17,6 @@ class Loader
 		return self::$loader;
 	}
 
-	public function module($className)
-	{
-		foreach ($this->$module_files as $folder) {
-			$file = $folder . DS . str_replace('\\', DS, $className) . '.class.php';
-			if (file_exists($file)) {
-				require $file;
-			}
-		}
-	}
 
 	public function base($class_name)
 	{

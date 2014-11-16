@@ -33,7 +33,7 @@ namespace PHPShark {
 		 * @param $parent
 		 * @param bool $internal
 		 */
-		public function __construct($target, array $params, $parent, $internal = false)
+		public function __construct($target, array $params, $parent = 'root', $internal = false)
 		{
 			$this->target = $target;
 			$this->params = $params;

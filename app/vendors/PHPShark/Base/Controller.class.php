@@ -32,7 +32,7 @@ namespace PHPShark\Base {
 						$class = basename($f, ".class.php");
 						require $f;
 						$this->mod["$d"]["$class"] = new $class();
-						//TODO: do this object style, not array
+						//TODO: do this object style, not array (casting to object)
 					}
 				}
 			} else return null;
