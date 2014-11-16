@@ -1,7 +1,7 @@
 <?php
 
-use Codesharks\Controller;
-use Codesharks\TText;
+use PHPShark\Base\Controller;
+use PHPShark\TText;
 
 class ExampleController extends Controller
 {

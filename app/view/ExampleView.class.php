@@ -1,6 +1,6 @@
 <?php
 
-use Codesharks\View;
+use PHPShark\View;
 
 class ExampleView extends View
 {

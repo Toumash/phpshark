@@ -1,7 +1,12 @@
 <?php
-define('WR', dirname(__FILE__)); // Web Root
-define('R', WR . '/app'); // Application Root
 define('DS', DIRECTORY_SEPARATOR);
+define('WEB_ROOT', dirname(__FILE__)); // Web Root
+define('APP_ROOT', WEB_ROOT . DS . 'app'); // Application Root
+define('LOG_DIR', APP_ROOT . DS . 'log');
+define('MODULES_DIR', APP_ROOT . DS . 'module');
+define('VENDORS_DIR', APP_ROOT . DS . 'vendors');
+define('ROUTES_DIR', APP_ROOT . DS . 'routes');
+
 
 /*    DEBUG VARIABLES
 **************************/
@@ -11,25 +16,32 @@ error_reporting(E_ALL | E_STRICT);
 
 /*      AUTOLOADING
  *************************/
-require R . DS . 'autoload.php';
-use Codesharks\TText;
+require APP_ROOT . DS . 'Loader.class.php';
+Loader::getInstance();
+
+use PHPShark\TText;
 
 TText::init(); //dictionary
 
 session_start();
-require_once R . DS . 'vendors' . DS . 'AltoRouter' . DS . 'AltoRouter.php';
+require_once VENDORS_DIR . DS . 'AltoRouter' . DS . 'AltoRouter.php';
 $router = new AltoRouter();
 $router->setBasePath('/mvc');
 
 /*        ROUTING
  **************************/
-$routes2 = json_decode(file_get_contents(R . DS . 'routes.json'));
-$router->addRoutes($routes2);
+// Adds all routes within routes directory
+foreach (glob(ROUTES_DIR . DS . '*.json') as $filename) {
+	$routes2 = json_decode(file_get_contents($filename));
+	$router->addRoutes($routes2);
+}
 $match = $router->match();
+
+PHPShark\Application::init(new \PHPShark\Request($match['target'], $match['params']));
 
 if ($match == false) {
 	header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-	require WR . DS . 'error_page' . DS . '404.php';
+	require WEB_ROOT . DS . 'error_page' . DS . '404.php';
 } else {
 	list($controller, $action) = explode('#', $match['target']);
 	$obj = new $controller();
@@ -38,6 +50,6 @@ if ($match == false) {
 		call_user_func_array(array($obj, $action), array($match['params']));
 	} else {
 		header($_SERVER["SERVER_PROTOCOL"] . ' 500 Internal server Error');
-		require WR . DS . 'error_page' . DS . '500.php';
+		require WEB_ROOT . DS . 'error_page' . DS . '500.php';
 	}
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Codesharks\Model;
+use PHPShark\Model;
 
 class ExampleModel extends Model
 {

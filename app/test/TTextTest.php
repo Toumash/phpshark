@@ -1,11 +1,17 @@
 <?php
 namespace test;
 
-use Codesharks\TText;
+use PHPShark\TText;
 
-define('R', dirname(dirname(__FILE__)));
 define('DS', DIRECTORY_SEPARATOR);
-require_once R . DS . 'vendors' . DS . 'Codesharks' . DS . 'TText.class.php';
+define('WEB_ROOT', dirname(__FILE__)); // Web Root
+define('APP_ROOT', dirname(dirname(__FILE__)));
+define('LOG_DIR', APP_ROOT . DS . 'log');
+define('MODULES_DIR', APP_ROOT . DS . 'module');
+define('VENDORS_DIR', APP_ROOT . DS . 'vendors');
+define('ROUTES_DIR', APP_ROOT . DS . 'routes');
+
+require_once APP_ROOT . DS . 'vendors' . DS . 'PHPShark' . DS . 'TText.class.php';
 
 
 class TTextTest extends \PHPUnit_Framework_TestCase
