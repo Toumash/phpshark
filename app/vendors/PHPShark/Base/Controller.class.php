@@ -17,27 +17,29 @@ namespace PHPShark\Base {
 		}
 
 		/**
-		 * @param $modName
-		 * @return null
+		 * Requires and instantinates all classes within module dir <br>
+		 * All of the loaded classes can be found at <b>$this->mod</b>
+		 * @param string $modName module name = module format
+		 * @param string $modDir Root of the modules directory <b>WITHOUT SLASH</b>
+		 * @return true}false
 		 */
-		public function loadModule($modName)
+		public function loadModule($modName, $modDir = MODULES_DIR)
 		{
-			//$this->$modName
-			if (is_dir(MODULES_DIR . DS . $modName)) {
-				$dirs = glob(MODULES_DIR . DS . $modName . DS . "*", GLOB_ONLYDIR);
+			if (is_dir($modDir . DS . $modName)) {
+				$dirs = glob($modDir . DS . $modName . DS . "*", GLOB_ONLYDIR);
 				foreach ($dirs as $dir) {
 					$d = basename($dir);
 					$file = glob($dir . DS . "*.class.php");
 					foreach ($file as $f) {
 						$class = basename($f, ".class.php");
 						require $f;
-						$this->mod["$d"]["$class"] = new $class();
+						$this->mod[$d][$class] = new $class();
 						//TODO: do this object style, not array (casting to object)
 					}
 				}
-			} else return null;
+				return true;
+			} else return false;
 		}
-
 
 		/**
 		 * It redirects URL.

@@ -1,7 +1,7 @@
 <?php
 define('DS', DIRECTORY_SEPARATOR);
-define('WEB_ROOT', dirname(__FILE__)); // Web Root
-define('APP_ROOT', WEB_ROOT . DS . 'app'); // Application Root
+define('WEB_ROOT', dirname(__FILE__));
+define('APP_ROOT', WEB_ROOT . DS . 'app');
 define('LOG_DIR', APP_ROOT . DS . 'log');
 define('MODULES_DIR', APP_ROOT . DS . 'module');
 define('VENDORS_DIR', APP_ROOT . DS . 'vendors');
