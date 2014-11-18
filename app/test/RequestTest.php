@@ -21,7 +21,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
 	public function testType()
 	{
-		$request = new Request('class#function', array('z' => 'x'), , false);
+		$request = new Request('class#function', array('z' => 'x'), 'x', 'parent', false);
 
 		$this->assertEquals(true, $request->isExternal());
 		$this->assertEquals(false, $request->isInternal());
@@ -29,7 +29,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
 	public function testParams()
 	{
-		$request = new Request('class#function', array('x' => 'z'), , false);
+		$request = new Request('class#function', array('x' => 'z'), 'name', 'parent', false);
 
 		$this->assertEquals('z', $request->params['x']);
 	}

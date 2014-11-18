@@ -11,7 +11,7 @@ define('VENDORS_DIR', APP_ROOT . DS . 'vendors');
 define('ROUTES_DIR', APP_ROOT . DS . 'routes');
 
 
-use PHPShark\Base\Controller;
+require_once APP_ROOT . DS . 'vendors' . DS . 'PHPShark' . DS . 'Base' . DS . 'Controller.class.php';
 
 class ControllerTest extends \PHPUnit_Framework_TestCase
 {
@@ -25,6 +25,8 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals(true, strpos($actual, 'TROLOLO') !== false);
 	}
 }
+
+use PHPShark\Base\Controller;
 
 class TestingController extends Controller
 {
