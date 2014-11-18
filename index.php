@@ -7,49 +7,57 @@ define('MODULES_DIR', APP_ROOT . DS . 'module');
 define('VENDORS_DIR', APP_ROOT . DS . 'vendors');
 define('ROUTES_DIR', APP_ROOT . DS . 'routes');
 
+define('DEBUG_SESSION', true);
 
-/*    DEBUG VARIABLES
-**************************/
-ini_set('display_startup_errors', 1);
-ini_set('display_errors', 1);
-error_reporting(E_ALL | E_STRICT);
+if (DEBUG_SESSION) {
+	ini_set('display_startup_errors', 1);
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL | E_STRICT);
+}
 
-/*      AUTOLOADING
- *************************/
 require APP_ROOT . DS . 'Loader.class.php';
 Loader::getInstance();
 
+use PHPShark\Application;
 use PHPShark\TText;
 
-TText::init(); //dictionary
-
-session_start();
 require_once VENDORS_DIR . DS . 'AltoRouter' . DS . 'AltoRouter.php';
-$router = new AltoRouter();
-$router->setBasePath('/mvc');
 
-/*        ROUTING
- **************************/
-// Adds all routes within routes directory
-foreach (glob(ROUTES_DIR . DS . '*.json') as $filename) {
-	$routes2 = json_decode(file_get_contents($filename));
-	$router->addRoutes($routes2);
-}
-$match = $router->match();
+TText::init();
 
-PHPShark\Application::init(new \PHPShark\Request($match['target'], $match['params']));
+Application::start();
+Application::setBasePath('/mvc');
+Application::loadRoutesFromFolder(ROUTES_DIR);
+
+$match = Application::matchRequest();
 
 if ($match == false) {
-	header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
-	require WEB_ROOT . DS . 'error_page' . DS . '404.php';
+	if (DEBUG_SESSION) {
+		Application::show404();
+	} else {
+		throw new Exception('Matching route not found');
+	}
 } else {
 	list($controller, $action) = explode('#', $match['target']);
 	$obj = new $controller();
 
 	if (is_callable(array($obj, $action))) {
-		call_user_func_array(array($obj, $action), array($match['params']));
+		try {
+			call_user_func_array(array($obj, $action), array($match['params']));
+		} catch (Exception $e) {
+			if (DEBUG_SESSION) throw $e;
+			else {
+				Application::show500();
+
+				$log = Logger::getLogger('APP');
+				$log->error('Uncaught Exception', $e);
+			}
+		}
 	} else {
-		header($_SERVER["SERVER_PROTOCOL"] . ' 500 Internal server Error');
-		require WEB_ROOT . DS . 'error_page' . DS . '500.php';
+		if (DEBUG_SESSION) {
+			Application::show500();
+		} else {
+			throw new Exception('Route definad controller or/and method NOT FOUND');
+		}
 	}
 }

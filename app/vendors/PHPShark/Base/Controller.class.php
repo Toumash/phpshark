@@ -4,6 +4,10 @@ namespace PHPShark\Base {
 
 	if (!defined('APP_ROOT')) die('This script cannot be run directly!');
 
+	/**
+	 * Class Controller
+	 * @package PHPShark\Base
+	 */
 	abstract class Controller
 	{
 		/**

@@ -2,12 +2,16 @@
 namespace PHPShark\Base {
 	use Exception;
 	use Logger;
-	use Rain\Tpl\NotFoundException;
-	use Rain\Tpl;
 	use Rain;
+	use Rain\Tpl;
+	use Rain\Tpl\NotFoundException;
 
 	if (!defined(APP_ROOT)) die('This file cannot be run as single');
 
+	/**
+	 * Class View
+	 * @package PHPShark\Base
+	 */
 	abstract class View
 	{
 		/**

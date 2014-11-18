@@ -20,7 +20,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 {
 	public function testInitialization()
 	{
-		$actual = Application::init(new Request('target', array('x' => 'z'), true));
+		$actual = Application::start(new Request('target', array('x' => 'z'), , true));
 		$this->assertEquals(true, $actual);
 	}
 }

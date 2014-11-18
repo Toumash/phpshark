@@ -12,6 +12,10 @@ namespace PHPShark\Base {
 
 	\Logger::configure(APP_ROOT . DS . 'config' . DS . 'log4php_config.xml');
 
+	/**
+	 * Class Model
+	 * @package PHPShark\Base
+	 */
 	abstract class Model
 	{
 		/**

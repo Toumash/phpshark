@@ -24,7 +24,7 @@ class TTextTest extends \PHPUnit_Framework_TestCase
 
 	public function tearDown()
 	{
-		TText::unloadDefaultTranslation();
+		TText::unloadDefaultLanguage();
 		TText::unloadTranslation();
 	}
 

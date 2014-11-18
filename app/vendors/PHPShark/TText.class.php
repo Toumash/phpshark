@@ -1,10 +1,9 @@
 <?php
 namespace PHPShark;
 if (!defined('APP_ROOT')) die('This file cannot be run as single');
-use Rain\Tpl\Exception;
 
 /**
- * Translated Text
+ * PHPShark Translating Text class
  * @package PHPShark
  */
 class TText
@@ -28,11 +27,14 @@ class TText
 		}
 	}
 
+	/**
+	 * @throws \Exception
+	 */
 	public static function init()
 	{
 		$result = parse_ini_file(APP_ROOT . DS . 'language' . DS . 'default.ini');
 		if ($result == false) {
-			throw new Exception('Could not read default language file');
+			throw new \Exception('Could not read default language file');
 		} else {
 			self::$native_lang_tbl = $result;
 		}
@@ -62,7 +64,7 @@ class TText
 		self::$lang_code = 'default';
 	}
 
-	public static function unloadDefaultTranslation()
+	public static function unloadDefaultLanguage()
 	{
 		self::$lang_tbl = null;
 	}

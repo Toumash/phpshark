@@ -4,6 +4,7 @@ namespace PHPShark {
 
 	/**
 	 * Passes all request data from the user
+	 * @package PHPShark
 	 */
 	class Request
 	{
@@ -22,6 +23,10 @@ namespace PHPShark {
 		 */
 		private $parent;
 		/**
+		 * @var string
+		 */
+		private $name;
+		/**
 		 * @var boolean
 		 */
 		private $internal = false;
@@ -30,15 +35,18 @@ namespace PHPShark {
 		 * Used only in the boostrap, first lines of framework
 		 * @param $target
 		 * @param $params array
-		 * @param $parent
+		 * @param $name
+		 * @param string $parent
 		 * @param bool $internal
 		 */
-		public function __construct($target, array $params, $parent = 'root', $internal = false)
+		public function __construct($target, array $params, $name, $parent = 'root', $internal = false)
 		{
 			$this->target = $target;
 			$this->params = $params;
+			$this->name = $name;
 			$this->internal = $internal;
 			$this->parent = $parent;
+			$this->name = $name;
 		}
 
 		/**
