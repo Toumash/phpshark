@@ -35,7 +35,7 @@ class LoggerAppenderFile extends LoggerAppender
 	 * If set to true, the file is locked before appending. This allows
 	 * concurrent access. However, appending without locking is faster so
 	 * it should be used where appropriate.
-	 * TODO: make this a configurable parameter
+	 * TD: make this a configurable parameter
 	 * @var boolean
 	 */
 	protected $locking = true;

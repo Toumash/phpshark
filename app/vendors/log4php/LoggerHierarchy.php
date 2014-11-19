@@ -228,7 +228,7 @@ class LoggerHierarchy
 	 * appenders before closing regular appenders. This is allows
 	 * configurations where a regular appender is attached to a logger
 	 * and again to a nested appender.
-	 * @todo Check if the last paragraph is correct.
+	 * @td Check if the last paragraph is correct.
 	 */
 	public function shutdown()
 	{

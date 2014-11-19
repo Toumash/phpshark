@@ -45,7 +45,7 @@ class LoggerReflectionUtils
 	 * @param array $properties An array containing keys and values.
 	 * @param string $prefix Only keys having the specified prefix will be set.
 	 */
-	// TODO: check, if this is really useful
+	// TD: check, if this is really useful
 	public static function setPropertiesByObject($obj, $properties, $prefix)
 	{
 		$pSetter = new LoggerReflectionUtils($obj);

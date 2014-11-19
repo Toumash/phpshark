@@ -268,7 +268,7 @@ class LoggerConfiguratorDefault implements LoggerConfigurator
 	private function configureAppender($name, $config)
 	{
 
-		// TODO: add this check to other places where it might be useful
+		// TD: add this check to other places where it might be useful
 		if (!is_array($config)) {
 			$type = gettype($config);
 			$this->warn(

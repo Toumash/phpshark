@@ -137,7 +137,7 @@ class LoggerLoggingEvent
 
 	/**
 	 * Returns the full qualified classname.
-	 * TODO: PHP does contain namespaces in 5.3. Those should be returned too,
+	 * TD: PHP does contain namespaces in 5.3. Those should be returned too,
 	 */
 	public function getFullQualifiedClassname()
 	{

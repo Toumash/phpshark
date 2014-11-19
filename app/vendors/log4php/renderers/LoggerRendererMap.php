@@ -84,7 +84,7 @@ class LoggerRendererMap
 
 	/**
 	 * Sets a custom default renderer class.
-	 * TODO: there's code duplication here. This method is almost identical to
+	 * TD: there's code duplication here. This method is almost identical to
 	 * addRenderer(). However, it has custom error messages so let it sit for
 	 * now.
 	 *

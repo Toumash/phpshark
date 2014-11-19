@@ -46,7 +46,7 @@ class Logger
 
 	/**
 	 * The Logger's fully qualified class name.
-	 * TODO: Determine if this is useful.
+	 * TD: Determine if this is useful.
 	 */
 	private $fqcn = 'Logger';
 
@@ -535,7 +535,7 @@ class Logger
 	public static function resetConfiguration()
 	{
 		self::getHierarchy()->resetConfiguration();
-		self::getHierarchy()->clear(); // TODO: clear or not?
+		self::getHierarchy()->clear(); // TD: clear or not?
 		self::$initialized = false;
 	}
 
