@@ -1,18 +1,25 @@
 #Welcome!#
-**This project is just my personal work of creating some simple MVC structure**  
+**This project is just my own work of creating simple, lightweight HMVC structure**  
 
 #FAQ#
 
 ##Where to place new modules?##
-`app/module/`  
-Then you create your MVC model as usual, and to run that you need to use the Controller/Model/View in your project, or just map the url to the controller in your `[YOUR_MODEL_NAME].json` file. Loader will automatically load all necessary files if you work with valid namespaces folder structure.
+**There:** `app/module/`  
+Then you create your MVC model as usual  
+`app/module/x/model`  
+`app/module/x/view`  
+`app/module/x/controller`  
+and place there your files `*.class.php`
 
 ##How to call/run your modules?##
-You just need to call the Controller/Model/View method that loades a Module to RAM, then you instantiniate it, and **that's it!** 
+Just use `Controller->loadModule('MODULE');` and fire an action by `Controller->mod['MODULE']['CONTROLLER']->action();`  
+**That's it!** Controller loades and creates all your necessary classes for you : )  
 
 ##Where to place routes?##
 **Answer is simple -\>**
 `app/routes/*.json`  
+or for the module routing  
+`app/routes/[MODULE_NAME]*.json`  
 
 ###How to generate URLs?##
 Just call
@@ -23,5 +30,5 @@ Just call
     
 [**AltoRouter**](https://github.com/dannyvankooten/AltoRouter) - MVC routing library by Danny Van Kooten  
 [**log4php**](http://logging.apache.org/log4php/) - professional logging system  
-[**phpmailer**](https://github.com/PHPMailer/PHPMailer)  
-[**Rain Templating Engine**](http://www.raintpl.com/) - easy to use templates with **caching**  
+[**phpmailer**](https://github.com/PHPMailer/PHPMailer) - "upgraded" php build-in mailer   
+[**Rain Templating Engine**](http://www.raintpl.com/) - fast and easy template creating
