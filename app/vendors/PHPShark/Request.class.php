@@ -9,10 +9,17 @@ namespace PHPShark {
 	class Request
 	{
 		/**
-		 * Target Class#method to execute
-		 * @var string
+		 * @var \PHPShark\Target
 		 */
-		public $target;
+		private $target;
+
+		/**
+		 * @return \PHPShark\Target
+		 */
+		public function getTarget()
+		{
+			return $this->target;
+		}
 		/**
 		 * @var array
 		 */
@@ -37,7 +44,7 @@ namespace PHPShark {
 
 		/**
 		 * Used only in the boostrap, first lines of framework
-		 * @param $target
+		 * @param $target \PHPShark\Target
 		 * @param $params array
 		 * @param $name
 		 * @param string $parent

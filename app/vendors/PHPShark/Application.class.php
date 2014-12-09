@@ -52,8 +52,14 @@ class Application
 	{
 		$file = ROUTES_DIR . $module . DS . '*.json';
 		if (file_exists($file)) {
-			$routes = json_decode(file_get_contents($file));
-			self::$Router->addRoutes($routes);
+			$json = json_decode(file_get_contents($file), true);
+
+			$module_name = $json['module'];
+			$routes = $json['routes'];
+			foreach ($routes as $key) {
+				self::$Router->map($key[0], $key[1], $key[2], $module_name . '#' . $key[3]);
+			}
+			self::$Router->addRoutes($json);
 		} else {
 			throw new \Exception('Demended route for module: ' . $module . 'has not been found');
 		}
@@ -88,12 +94,12 @@ class Application
 	}
 
 	/**
-	 * @return array|bool
+	 * @return Request|bool
 	 */
 	public static function matchRequest()
 	{
 		$request = self::$Router->match();
-		self::$REQUEST = new Request($request['target'], $request['params'], $request['name']);
+		self::$REQUEST = new Request(Target::valueOf(['target']), $request['params'], $request['name']);
 		return $request;
 	}
 

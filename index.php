@@ -40,26 +40,36 @@ if ($match == false) {
 		throw new Exception('Not found matching route');
 	}
 } else {
-	list($controller, $action) = explode('#', $match['target']);
-	$obj = new $controller();
+	$target = $match->getTarget();
+	$controller = $target->getClass();
+	$method = $target->getMethod();
+	$internal = $target->isInternal();
+	$module = $target->getModule();
 
-	if (is_callable(array($obj, $action))) {
-		try {
-			call_user_func_array(array($obj, $action), array($match['params']));
-		} catch (Exception $e) {
-			if (DEBUG_SESSION) throw $e;
-			else {
+	if ($internal) {
+		//list($controller, $method) = explode('#', $match['target']);
+		$obj = new $controller();
+
+		if (is_callable(array($obj, $method))) {
+			try {
+				call_user_func_array(array($obj, $method), array($match['params']));
+			} catch (Exception $e) {
+				if (DEBUG_SESSION) throw $e;
+				else {
+					Application::show500();
+
+					$log = Logger::getLogger('APP');
+					$log->error('Uncaught Exception', $e);
+				}
+			}
+		} else {
+			if (DEBUG_SESSION) {
 				Application::show500();
-
-				$log = Logger::getLogger('APP');
-				$log->error('Uncaught Exception', $e);
+			} else {
+				throw new Exception('Route definad controller or/and method NOT FOUND');
 			}
 		}
 	} else {
-		if (DEBUG_SESSION) {
-			Application::show500();
-		} else {
-			throw new Exception('Route definad controller or/and method NOT FOUND');
-		}
+		//TODO: EXTERNAL (MODULES CODE HERE)
 	}
 }

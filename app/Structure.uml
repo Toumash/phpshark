@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>PHP</ID>
+  <OriginalElement>\PHPShark\Application</OriginalElement>
+  <nodes>
+    <node x="0.0" y="422.0">\PHPShark\Application</node>
+    <node x="539.0" y="822.0">\PHPShark\Base\Controller</node>
+    <node x="362.0" y="735.0">\ExampleController</node>
+    <node x="575.0" y="509.0">\PHPShark\Base\Model</node>
+    <node x="530.0" y="0.0">\PHPShark\Request</node>
+    <node x="375.0" y="422.0">\ExampleModel</node>
+    <node x="776.0" y="735.0">\PHPShark\TText</node>
+    <node x="0.0" y="735.0">\PHPShark\Target</node>
+    <node x="0.0" y="0.0">\ExampleView</node>
+    <node x="181.0" y="108.0">\PHPShark\Base\View</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="\ExampleView" target="\PHPShark\Base\View">
+      <point x="0.0" y="0.0" />
+      <point x="333.0" y="34.0" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="\ExampleModel" target="\PHPShark\Base\Model">
+      <point x="0.0" y="0.0" />
+      <point x="678.0" y="445.5" />
+      <point x="0.0" y="0.0" />
+    </edge>
+    <edge source="\ExampleController" target="\PHPShark\Base\Controller">
+      <point x="0.0" y="0.0" />
+      <point x="635.0" y="758.5" />
+      <point x="0.0" y="0.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="513.0" y="471.5" />
+  <SelectedNodes>
+    <node>\PHPShark\Application</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+    <Category>Constants</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
