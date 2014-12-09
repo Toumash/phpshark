@@ -27,7 +27,9 @@ TText::init();
 
 Application::start();
 Application::setBasePath('/mvc');
-Application::loadRoutesFromFolder(ROUTES_DIR);
+
+Application::addRoutesSource('MAIN');
+Application::loadRoutes();
 
 $match = Application::matchRequest();
 
@@ -35,7 +37,7 @@ if ($match == false) {
 	if (DEBUG_SESSION) {
 		Application::show404();
 	} else {
-		throw new Exception('Matching route not found');
+		throw new Exception('Not found matching route');
 	}
 } else {
 	list($controller, $action) = explode('#', $match['target']);

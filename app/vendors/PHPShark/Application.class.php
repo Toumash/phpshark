@@ -1,5 +1,6 @@
 <?php
 namespace PHPShark;
+
 if (!defined('APP_ROOT')) {
 	die('This scriot cant be run as single file');
 }
@@ -18,6 +19,7 @@ class Application
 	 * @var \AltoRouter
 	 */
 	private static $Router;
+	private static $route_files = array();
 
 	public static function start()
 	{
@@ -35,7 +37,7 @@ class Application
 	}
 
 	/**
-	 * @param $dir string Path to routes directory <br>
+	 * @param $module string example:mod_facebook module routes file to be scanned <br>
 	 * Routes must be in JSON structure<br>
 	 * <code>
 	 * [
@@ -43,13 +45,40 @@ class Application
 	 * ["GET", "/xd/?[i:idx]?", "ExampleController#method2", "ROUTE_NAME2"],
 	 * ]
 	 * </code>
+	 * @throws \Exception
 	 * @return void
 	 */
-	public static function loadRoutesFromFolder($dir)
+	public static function addRoutesForModule($module)
 	{
-		foreach (glob($dir . DS . '*.json') as $filename) {
-			$routes = json_decode(file_get_contents($filename));
+		$file = ROUTES_DIR . $module . DS . '*.json';
+		if (file_exists($file)) {
+			$routes = json_decode(file_get_contents($file));
 			self::$Router->addRoutes($routes);
+		} else {
+			throw new \Exception('Demended route for module: ' . $module . 'has not been found');
+		}
+	}
+
+	public static function addRoutesSource($filename)
+	{
+		self::$route_files[] = $filename;
+	}
+
+	/**
+	 * Loads up all the route files specified by **addRoutesSource**
+	 * @see \PHPShark\Application::addRoutesForModule
+	 * @throws \Exception
+	 */
+	public static function loadRoutes()
+	{
+		foreach (self::$route_files as $filename) {
+			$filename = ROUTES_DIR . DS . $filename;
+			if (file_exists($filename)) {
+				$routes = json_decode(file_get_contents($filename));
+				self::$Router->addRoutes($routes);
+			} else {
+				throw new \Exception('No Route file' . $filename);
+			}
 		}
 	}
 

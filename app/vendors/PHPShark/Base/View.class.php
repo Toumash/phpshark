@@ -2,9 +2,9 @@
 namespace PHPShark\Base {
 	use Exception;
 	use Logger;
-	use Rain;
-	use Rain\Tpl;
 	use Rain\Tpl\NotFoundException;
+	use Rain\Tpl;
+	use Rain;
 
 	if (!defined(APP_ROOT)) die('This file cannot be run as single');
 
